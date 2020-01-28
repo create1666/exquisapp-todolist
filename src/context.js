@@ -2,25 +2,45 @@ import React, { Component } from 'react';
 
 const Context = React.createContext();
 
-export  class Provider extends Component {
+const reducer = (prevState, newObject) => {
+		if (newObject.type === 'TOGGLE') {
+		
+			return {
+				todos: prevState.todos.map((t) => {
+					if (t.id === newObject.payload) {
+						t.complete = !t.complete;
+					}
+					return t;
+				})
+			};
+	
+	}else if(newObject.type==="DELETE"){
+		return{todos:prevState.todos.filter(t=>t.id !==newObject.payload)}
+
+	}
+	
+};
+
+export class Provider extends Component {
 	state = {
 		todos: [
 			{
 				id: 1,
 				title: 'Attend my PPA',
-				complete: false
+				complete: true
 			},
 			{
 				id: 2,
 				title: 'check slack ',
-				complete: false
+				complete: true
 			},
 			{
 				id: 3,
 				title: 'visit dev.to',
 				complete: false
 			}
-		]
+		],
+		eventHandler: ( newObject ) => this.setState((prevState) => reducer(prevState, newObject))
 	};
 	render() {
 		return (

@@ -6,7 +6,9 @@ class IncreaseTodo extends Component {
 			<div>
 				<form>
 					<input className="form-control" type="text" placeholder="Type here todo..." />
-					<button className="form-control btn-secondary" type="submit" >SUBMIT TODO</button>
+					<button className="form-control btn-secondary" type="submit">
+						SUBMIT TODO
+					</button>
 				</form>
 			</div>
 		);
